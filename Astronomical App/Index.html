@@ -1,0 +1,52 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MoonPhase</title>
+        <meta name="description" content="An app for knowing the phase of the moon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="css/screen.css">
+        <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
+    </head>
+
+    <body class="onload" onload="getLocation()">
+
+        <main class="c-app">
+            <h1 class="c-app-title">MoonPhase app</h1>
+            <button class="night-mode" id="Night-mode" onclick="Lightmode()"><img class="night-mode_symbol"
+                src="img/sunny.png" alt="night-mode"></button>
+            <div class="c-moon">
+                <h2 class="c-moon-title">Full moon</h2>
+                <h3 class="c-moon-days"></h3>
+                <div class="c-moon-div " id="flip">
+                    <div class="c-moon-glow-border">
+                        <div class="c-moon-block1 c-moon-hide"></div>
+                        <div class="c-moon-block2 "></div>
+                        <div class="c-moon-dark"></div>
+                    </div>
+                    <img class="c-moon-symbol" src="img/Fullmoon.png" alt="full moon">
+                </div>
+
+                <h3 class="c-moon-location">Kortrijk, Belgie</h3>
+            </div>
+            <div class="c-timeline">
+                <time class="c-timeline-time js-rise">
+                    <p class="c-time-sunrise">07:59</p>
+                    <p>Sunrise</p>
+                </time>
+                <div class="c-line"></div>
+                <time class="c-timeline-time js-set">
+                    <p class="c-time-sunset">07:59</p>
+                    <p>Sunset</p>
+                </time>
+            </div>
+
+        </main>
+
+        <script type="text/javascript" src="scripts/app.js"></script>
+    </body>
+
+    </html>

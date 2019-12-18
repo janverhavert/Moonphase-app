@@ -1,0 +1,524 @@
+/*------------------------------------*\
+#Variables
+\*------------------------------------*/
+:root {
+    /* Global colors */
+    --global-color-alpha-light: #4F95FF;
+    --global-color-alpha: #3385FF;
+    --global-color-alpha-dark: #2E77E6;
+    --global-color-alpha-x-dark: #1B4186;
+    --global-color-alpha-transparent: #3385ffbf;
+    --global-color-alpha-x-transparent: #3385ff4d;
+
+    --global-color-neutral-xxxx-light: #F5F6FA;
+    --global-color-neutral-xxx-light: #E2E3E7;
+    --global-color-neutral-xx-light: #caccd4;
+    --global-color-neutral-x-light: #b5b6c0;
+    --global-color-neutral-light: #a0a1ad;
+    --global-color-neutral: #8b8c9a;
+    --global-color-neutral-dark: #757787;
+    --global-color-neutral-x-dark: #606274;
+    --global-color-neutral-xx-dark: #4b4c60;
+    --global-color-neutral-xxx-dark: #35374d;
+    --global-color-neutral-xxxx-dark: #20223a;
+    --global-color-neutral-xxxxx-dark: #0f0f0f;
+    --global-color-error: #FF3333;
+    --global-color-error-transparent: #FF3333bf;
+    --global-color-error-x-transparent: #FF33334d;
+
+
+    /* global page settings */
+    --global-page-color: var(--global-color-neutral-xx-light);
+    --global-backgroundColor: #20223ab0;
+
+    /* border*/
+    --global-borderColor: purple;
+    --global-borderRadius: 6px;
+    --global-borderWidth: 1px;
+
+    /* transitions */
+    --global-transitionEasing-out: ease-out;
+    --global-transitionDuration-alpha: .1s;
+    --global-transitionDuration-beta: .2s;
+    --global-transitionDuration-gamma: .3s;
+
+
+    /* Baseline settings */
+    --global-baseline: 8px;
+    --global-whitespace: calc(var(--global-baseline) * 3);
+    /* = 24px */
+
+    --global-whitespace-xs: calc(var(--global-baseline) * .5);
+    /* = 4px */
+    --global-whitespace-sm: calc(var(--global-baseline) * 1);
+    /*  = 8px */
+    --global-whitespace-md: calc(var(--global-baseline) * 2);
+    /*  = 16px */
+    --global-whitespace-lg: calc(var(--global-baseline) * 4);
+    /*  = 32px */
+    --global-whitespace-xl: calc(var(--global-whitespace) * 2);
+    /*  = 48px */
+    --global-whitespace-xxl: calc(var(--global-whitespace) * 3);
+    /*  = 72px */
+
+    /* forms*/
+    --global-input-error-borderColor: var(--global-color-error);
+    --global-input-error-boxShadowColor: var(--global-color-error-x-transparent);
+    /* Width */
+    --global-width: 400px;
+
+
+}
+
+/*------------------------------------*\
+#GENERIC
+\*------------------------------------*/
+
+/*
+    Generic: Page
+    ---
+    Global page styles + universal box-sizing:
+*/
+
+html {
+    background-image: url("../img/Nightsky-background.svg");
+    background-color: var(--global-backgroundColor);
+    background-size: cover;
+    background-repeat: repeat;
+    background-position: center;
+    position: relative;
+    min-width: calc(var(--global-width) * .75);
+    color: var(--global-page-color);
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: "Inter Web", Helvetica, arial, sans-serif;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    transition: all var(--global-transitionDuration-beta) ease-in-out;
+}
+
+/*------------------------------------*\
+#Elements
+\*------------------------------------*/
+
+/*
+Elements: Images
+---
+Default markup for images to make them responsive
+*/
+
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+
+/*
+Elements: app
+---
+making of the moon phase app
+*/
+.onload {
+    display: none;
+}
+
+.c-app {
+    transition: all var(--global-transitionDuration-beta) ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: var(--global-width);
+    margin-right: auto;
+    margin-left: auto;
+    height: 100vh;
+}
+
+.c-app-title {
+    margin-bottom: var(--global-whitespace-lg);
+    padding-left: var(--global-whitespace-md);
+}
+/*
+Elements: app
+---
+making of the phases of the moon + data
+*/
+.c-moon {
+    position: relative;
+    text-align: center;
+    margin-top: 0;
+}
+@media (min-height:550px) {
+    .c-moon {
+        margin-top:-100px;
+    }
+}
+
+
+.c-moon-title,
+.c-moon-location,
+.c-moon-days {
+    margin-bottom: 0;
+}
+
+.c-moon-days {
+    margin-bottom: 20px;
+}
+
+.c-moon-symbol {
+    max-width: calc(var(--global-width) / 2);
+    text-align: center;
+    z-index: 1;
+    opacity: 0.4;
+}
+
+.c-moon-div {
+    height: calc(var(--global-width) / 2);
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.c-moon-block1,
+.c-moon-block2 {
+    visibility: visible;
+    position: absolute;
+    right: 50px;
+    width: 50%;
+    height: 100%;
+    /* border-radius:  0 100% 100% 0  ; */
+    background-color: white;
+    overflow-x: hidden;
+}
+
+.c-moon-block1 {
+    left: 0;
+}
+
+.c-moon-block2 {
+    right: 0;
+}
+
+.c-moon-hide {
+    background-color: var(--global-color-neutral-xxxxx-dark);
+}
+
+.c-moon-glow-border {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: calc(var(--global-width) / 2);
+    height: 100%;
+    border: var(--global-borderWidth) solid rgba(255, 255, 255, 0.568);
+    box-shadow: 0 0 50px 10px white;
+    border-radius: 100%;
+    overflow-y: hidden;
+}
+
+.c-moon-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.568);
+    border-radius: 100%;
+}
+
+.c-moon-dark {
+    position: absolute;
+    right: auto;
+    left: auto;
+    width: 25%;
+    height: 100%;
+    background-color: var(--global-color-neutral-xxxxx-dark);
+    border-radius: 100%;
+}
+.flip {
+    -moz-transform: scaleX(-1);
+    /* Gecko */
+    -o-transform: scaleX(-1);
+    /* Opera */
+    -webkit-transform: scaleX(-1);
+    /* Webkit */
+    transform: scaleX(-1);
+    /* Standard */
+
+    filter: FlipH;
+    /* IE 6/7/8 */
+}
+/*
+Elements: timeline
+---
+making of the timeline with sunrise and sunset times
+*/
+.c-timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    text-align: center;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 0px;
+}
+
+.c-time-sunrise {
+    padding: 0;
+    margin: 0;
+}
+
+.c-time-sunset {
+    padding: 0;
+    margin: 0;
+}
+
+.c-line {
+    margin-top: 10px;
+    width: 100%;
+    border-top: var(--global-borderWidth)  solid var(--global-color-neutral-xx-light);
+}
+
+.c-timeline-time {
+    padding: 0 var(--global-whitespace-xs) var(--global-whitespace) var(--global-whitespace-xs);
+}
+
+/*
+Elements: night mode
+---
+making a functioning night mode button
+*/
+.night-mode {
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: var(--global-borderRadius);
+    background-color: yellow;
+    border: var(--global-borderWidth)  solid orange;
+    transition: all var(--global-transitionDuration-gamma) var(--global-transitionEasing-out);
+}
+
+.night-mode:active .night-mode_symbol {
+    transform: translate(30px, 10px);
+}
+
+.day-mode {
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: var(--global-borderRadius);
+    background-color: var(--global-color-alpha-light);
+    border: var(--global-borderWidth)  solid var(--global-color-alpha-x-dark);
+    transition: all var(--global-transitionDuration-gamma) var(--global-transitionEasing-out);
+}
+
+.night-mode_symbol {
+    animation:var(--global-transitionDuration-beta) ease-in-out slideInFromLeft;
+    transition: all var(--global-transitionDuration-beta) var(--global-transitionEasing-out);
+}
+
+.day-mode:active .night-mode_symbol {
+    transform: translate(30px, 10px);
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translate(-30px, -10px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/*
+Elements: info page
+---
+making of the info page
+*/
+
+.c-landing {
+    overflow-y: scroll;
+    justify-content: space-between;
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+.c-landing-title {
+    text-align: center;
+}
+
+/*
+Elements: info div
+---
+aligning screen and paragraph
+*/
+
+.c-info {
+
+    grid-row-start: 1;
+    grid-column-start: 1;
+    text-align: center;
+    width: 80%;
+}
+
+.c-form {
+    grid-row-start: 2;
+    grid-column-start: 1;
+    width: 75%;
+}
+
+.c-info-text {
+    text-align: justify;
+}
+/*
+Elements: responsive
+---
+giving a min-width to make the page more responsive
+*/
+@media (min-width:1025px) {
+    .c-landing {
+        height: 100%;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        grid-template-columns: 100px 1fr 1fr 100px;
+        grid-template-rows: 100px 1fr 100px;
+    }
+
+    .c-info {
+
+        grid-row-start: 2;
+        grid-column-start: 2;
+        text-align: center;
+        width: 60%;
+    }
+
+    .c-form {
+        grid-row-start: 2;
+        grid-column-start: 3;
+        width: 50%;
+        padding-bottom: 30px;
+    }
+}
+
+.c-info-screen {
+    width: calc(var(--global-width)*1.5);
+}
+
+/*
+Elements: form
+---
+making of the form on the landingspage
+*/
+.c-form-field {
+    position: relative;
+}
+
+.c-form-label {
+    position: relative;
+    width: 95%;
+
+}
+.c-form-email {
+    display: flex;
+    align-items: flex-end;
+    outline: none;
+    width: calc(var(--global-width) /1.2);
+    height: calc(var(--global-width) /10);
+    padding-top: 5px;
+    padding-left: 10px;
+    width: 100%;
+    border: 2px solid var(--global-color-neutral-dark);
+    border-radius: var(--global-borderRadius);
+    transition: border var(--global-transitionDuration-beta) var(--global-transitionEasing-out);
+}
+
+.c-form-email:hover {
+    border: 2px solid var(--global-color-neutral-xx-dark);
+}
+
+.c-form-email:focus {
+    border: 2px solid var(--global-borderColor);
+    box-shadow: 0 0 3px 1px var(--global-borderColor);
+}
+
+.c-form-submit {
+    outline: none;
+    width: 50%;
+    height: calc(var(--global-width) /10);
+    color: var(--global-page-color);
+    font-weight: bold;
+    font-size: 17px;
+    background-color: var(--global-color-alpha);
+    border: none;
+    border-radius: var(--global-borderRadius);
+    transition: background-color var(--global-transitionDuration-beta) var(--global-transitionEasing-out);
+}
+
+.c-form-submit:hover {
+    background-color: var(--global-color-alpha-light);
+}
+
+.c-form-submit:active {
+    background-color: var(--global-color-alpha-dark);
+}
+
+/*
+Elements: floating label
+---
+changing the position of the email label on active
+*/
+.c-label--floating {
+    color: black;
+    position: absolute;
+    font-weight: bold;
+    top: calc(var(--global-baseline) * 4.7);
+    left: var(--global-whitespace-sm);
+    padding-left: var(--global-whitespace-xs);
+    transition: transform var(--global-transitionDuration-beta) var(--global-transitionEasing-out), font-size var(--global-transitionDuration-beta) var(--global-transitionEasing-out);
+
+    z-index: 1;
+}
+
+.is-floating,
+.c-form-field:focus-within .c-label--floating {
+    font-size: 70%;
+    transform: translateY(calc(var(--global-baseline) * -1.5));
+}
+/*
+Elements: error message
+---
+making of the error message for the form
+*/
+.has-error {
+    color: red;
+    border: red;
+    --input-hover-borderColor: var(--global-input-error-borderColor);
+    --global-borderColor: var(--global-input-error-borderColor);
+    --input-focus-boxShadowColor: var(--global-input-error-boxShadowColor);
+}
+
+.c-label__error-message {
+    color: red;
+    font-weight: 600;
+    font-size: 12px;
+    float: right;
+    display: none;
+    padding: 0;
+}
+
+.c-label__error-message.is-visible {
+    display: block;
+}
