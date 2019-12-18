@@ -46,7 +46,7 @@ let showResult = queryResponse => {
 let getAPI = async function (lat, lon) {
 	// we bouwen de url op van de moonphases
 	var date = Math.floor(Date.now() / 1000);
-	const SERVER_ENDPOINTPHASE = 'http://api.farmsense.net/v1/moonphases/?d=' + date;
+	const SERVER_ENDPOINTPHASE = 'https://api.farmsense.net/v1/moonphases/?d=' + date;
 
 
 	let customHeaders = new Headers();
@@ -62,7 +62,7 @@ let getAPI = async function (lat, lon) {
 	age = dataPhase["0"]["Age"];
 	name = dataPhase["0"]["Moon"]["0"];
 	// we bouwen de url op van de dagtijden
-	const SERVER_ENDPOINTDAYLIGHT = 'http://api.farmsense.net/v1/daylengths/?d=' + date + '&lat=' + lat + '&lon=' + lon;
+	const SERVER_ENDPOINTDAYLIGHT = 'https://api.farmsense.net/v1/daylengths/?d=' + date + '&lat=' + lat + '&lon=' + lon;
 	const responseDaylight = await fetch(SERVER_ENDPOINTDAYLIGHT, {
 		headers: customHeaders
 	});
