@@ -81,11 +81,7 @@
 */
 
 html {
-    background-image: url("../img/Nightsky-background.svg");
     background-color: var(--global-backgroundColor);
-    background-size: cover;
-    background-repeat: repeat;
-    background-position: center;
     position: relative;
     min-width: calc(var(--global-width) * .75);
     color: var(--global-page-color);
@@ -107,7 +103,6 @@ body {
     position: relative;
     margin: 0;
     height: 100%;
-    transition: all var(--global-transitionDuration-beta) ease-in-out;
 }
 
 /*------------------------------------*\
@@ -158,6 +153,7 @@ making of the phases of the moon + data
     position: relative;
     text-align: center;
     margin-top: 0;
+    
 }
 @media (min-height:550px) {
     .c-moon {

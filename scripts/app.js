@@ -15,7 +15,7 @@ let showResult = queryResponse => {
 		
 
 	} else if (moonIllumi > 50) {
-
+		// halve maan maken als de illumination 50% is
 		document.getElementsByClassName("c-moon-dark")[0].style.backgroundColor = "white";
 		document.getElementsByClassName("c-moon-block1")[0].style.backgroundColor = "black";
 		document.getElementsByClassName("c-moon-block2")[0].style.backgroundColor = "white";
@@ -25,14 +25,15 @@ let showResult = queryResponse => {
 
 		document.getElementsByClassName("c-moon-dark")[0].style.width = Math.round(100 - (2 * moonIllumi)) + "%";
 
+		
 	} else if (moonIllumi == 0) {
-
+		// verduisteren van de maan als illumination 0% is
 		document.getElementsByClassName("c-moon-dark")[0].style.backgroundColor = "black";
 		document.getElementsByClassName("c-moon-block1")[0].style.backgroundColor = "black";
 		document.getElementsByClassName("c-moon-block2")[0].style.backgroundColor = "white";
 		
 	}
-
+// omdraaien van de moon div om de phases beter te tonen 
 	if(Math.round(age) < 15){
 		flip.classList.remove("flip");
 	} else if (Math.round(age) > 15){
@@ -46,7 +47,7 @@ let showResult = queryResponse => {
 let getAPI = async function (lat, lon) {
 	// we bouwen de url op van de moonphases
 	var date = Math.floor(Date.now() / 1000);
-	const SERVER_ENDPOINTPHASE = 'https://api.farmsense.net/v1/moonphases/?d=' + date;
+	const SERVER_ENDPOINTPHASE = 'http://api.farmsense.net/v1/moonphases/?d=' + date;
 
 
 	let customHeaders = new Headers();
@@ -62,7 +63,7 @@ let getAPI = async function (lat, lon) {
 	age = dataPhase["0"]["Age"];
 	name = dataPhase["0"]["Moon"]["0"];
 	// we bouwen de url op van de dagtijden
-	const SERVER_ENDPOINTDAYLIGHT = 'https://api.farmsense.net/v1/daylengths/?d=' + date + '&lat=' + lat + '&lon=' + lon;
+	const SERVER_ENDPOINTDAYLIGHT = 'http://api.farmsense.net/v1/daylengths/?d=' + date + '&lat=' + lat + '&lon=' + lon;
 	const responseDaylight = await fetch(SERVER_ENDPOINTDAYLIGHT, {
 		headers: customHeaders
 	});
@@ -89,6 +90,7 @@ let getAPI = async function (lat, lon) {
 };
  
 window.setInterval(function () {
+	// Refreshen van de api elke 5 seconden
 	getAPI(lat, lon);
 }, 5000);
 
@@ -96,6 +98,7 @@ let getLocation = () => {
 	if ('geolocation' in navigator) {
 		navigator.geolocation.getCurrentPosition(function (position) {
 			document.body.classList.remove("onload");
+			// ophalen locatie van gebruiker
 			lat = position.coords.latitude;
 			lon = position.coords.longitude;
 			getAPI(lat, lon);

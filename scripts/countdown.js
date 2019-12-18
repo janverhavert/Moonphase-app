@@ -16,8 +16,8 @@ var x = setInterval(function() {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   // Display the result in the element with id="demo"
-  document.getElementsByClassName("c-form-timer")[0].innerHTML =  days + "d " + hours + "h "
-  + minutes + "m " ;
+  document.getElementsByClassName("c-form-timer")[0].innerHTML =  "Nog " +days + " dagen en " + hours + " uur "
+  + minutes + " minuten te gaan!" ;
 
   // If the count down is finished, write some text
   if (distance < 0) {
