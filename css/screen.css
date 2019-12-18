@@ -99,6 +99,8 @@ html {
 }
 
 body {
+    background-image: url("../img/Nightsky-background.svg");
+    background-color: var(--global-backgroundColor);
     background-size: cover;
     background-repeat: repeat;
     background-position: center;
